@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seleccionar Gráfico</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-image: url('static/principal_fondo.jpg'); /* Ruta al fondo principal */
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            color: #ffffff; /* Ajusta el color de texto si es necesario */
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            margin-top: 50px;
+        }
+
+        .movement-container {
+            display: inline-block;
+            text-align: center;
+            margin: 20px;
+        }
+
+        .movement-image {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border: 1px solid #ddd;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .movement-button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .movement-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Seleccionar Gráfico</h1>
+
+    <div class="movement-container">
+        <img class="movement-image" src="static\parabolic_plot.png" alt="Movimiento Parabólico">
+        <h2 style="color: #ffffff; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;"">Movimiento Parabólico</h2>
+        <form method="GET" action="/parabolico">
+            <button class="movement-button" type="submit">Graficar Movimiento Parabólico</button>
+        </form>
+    </div>
+    
+    <div class="movement-container">
+        <img class="movement-image" src="static\logo_circular.jpg" alt="Movimiento Circular">
+        <h2 style="color: #ffffff; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;"">Movimiento Circular</h2>
+        <form method="GET" action="/circular">
+            <button class="movement-button" type="submit">Graficar Movimiento Circular</button>
+        </form>
+    </div>
+    
+</body>
+</html>

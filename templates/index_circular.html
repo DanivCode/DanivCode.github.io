@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movimiento Circular</title>
+    <script type="text/javascript" async
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+     <style>
+        body {
+            background-image: url('static/circular_fondo.jpg'); /* Ruta al fondo parabólico */
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            color: #000000; /* Ajusta el color del texto si es necesario */
+        }
+    </style>
+</head>
+<body>
+<h1>Movimiento Circular</h1>
+
+<br>
+<form action="/" method="GET">
+    <input type="submit" value="Volver a la Selección de Graficador">
+</form>
+
+<form method="POST">
+    <label for="radio">Radio:</label>
+    <input type="text" name="radio" required>
+    <br>
+    <label for="velocidad_angular">Velocidad Angular:</label>
+    <input type="text" name="velocidad_angular" required>
+    <br>
+    <input type="submit" value="Calcular y Graficar">
+</form>
+
+{% if plot %}
+<div style="display: flex;">
+    <div style="flex: 1;">
+        <img src="{{ url_for('static', filename='circular_plot.png') }}" alt="Gráfica">
+    </div>
+    <div style="flex: 1;">
+        <h2>Datos</h2>
+        <p>Velocidad Tangencial: {{ velocidad_lineal }} m/s</p>
+        <p>Aceleración Radial: {{ aceleracion[-1] }} m/s²</p>
+        <p>Diámetro: {{ diametro }} unidades</p>
+        <p>Período: {{ periodo }} segundos</p>
+        <p>Frecuencia: {{ frecuencia }} Hz</p>
+        {% if tiempo_final is defined %} <!-- Verifica si tiempo_final está definido -->
+        <p>Ángulo total recorrido: {{ velocidad_angular * tiempo_final }} radianes</p>
+        {% endif %}
+    </div>
+</div>
+
+<h2>Información sobre el Movimiento Circular</h2>
+
+<p>
+    El movimiento circular es un tipo de movimiento en el que un objeto se mueve alrededor de un punto central
+    con una velocidad constante. Este movimiento es común en fenómenos naturales como la órbita de los planetas
+    alrededor del sol.
+</p>
+
+<p>
+    El objetivo de estudiar el movimiento circular es comprender cómo los objetos se mueven en órbitas y cómo se
+    pueden describir matemáticamente estos movimientos. Esto es esencial en la física y la astronomía para predecir
+    el comportamiento de los cuerpos celestes.
+</p>
+
+<h3>Ecuaciones del Movimiento Circular</h3>
+
+<p>
+    Velocidad Tangencial (\(v\)): \(v = R \cdot \omega\)
+</p>
+
+<p>
+    Aceleración Centrípeta (\(a_c\)): \(a_c = R \cdot \omega^2\)
+</p>
+
+<p>
+    Período (\(T\)): \(T = \frac{2\pi}{\omega}\)
+</p>
+
+<p>
+    Frecuencia (\(f\)): \(f = \frac{1}{T}\)
+</p>
+
+
+
+{% endif %}
+
+{% if error %}
+<p style="color: red;">{{ error }}</p>
+{% endif %}
+</body>
+</html>

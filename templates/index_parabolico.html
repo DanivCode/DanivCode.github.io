@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movimiento Parabólico</title>
+    <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<style>
+    body {
+        background-image: url('static/circular_fondo.jpg'); /* Ruta al fondo parabólico */
+        background-size: cover;
+        background-attachment: fixed;
+        background-position: center;
+        color: #000000; /* Ajusta el color del texto si es necesario */
+    }
+</style>
+</head>
+<body>
+    <h1>Movimiento Parabólico</h1>
+    
+    <br>
+    <form action="/" method="GET">
+        <input type="submit" value="Volver a la Selección de Graficador">
+    </form>
+    
+    <form method="POST" action="/parabolico">
+        <label for="angle">Ángulo (grados):</label>
+        <input type="text" id="angle" name="angle" required><br><br>
+        
+        <label for="velocity">Velocidad (m/s):</label>
+        <input type="text" id="velocity" name="velocity" required><br><br>
+        
+        <label for="initial_x">Posición Inicial en X (m):</label>
+        <input type="text" id="initial_x" name="initial_x" required><br><br>
+        
+        <label for="initial_y">Posición Inicial en Y (m):</label>
+        <input type="text" id="initial_y" name="initial_y" required><br><br>
+        
+        <input type="submit" name="submit_button" value="Graficar Movimiento Parabólico">
+    </form>
+    
+    {% if plot %}
+        <div style="display: inline-block; vertical-align: top;">
+            <h2>Gráfico de Movimiento Parabólico</h2>
+            <img src="{{ url_for('static', filename='parabolic_plot.png') }}" alt="Gráfico Parabólico">
+        </div>
+        
+        <div style="display: inline-block; margin-left: 20px;">
+            <h2>Resultados:</h2>
+            <p><strong>Tiempo Final:</strong> {{ tiempo_final }} segundos</p>
+            <p><strong>Posición Final en X:</strong> {{ posicion_final_x }} metros</p>
+            <p><strong>Altura Máxima:</strong> {{ altura_maxima }} metros</p>
+            
+            <h2>Información sobre el Movimiento Parabólico</h2>
+            
+            <p>
+                El movimiento parabólico es un tipo de movimiento en el que un objeto se desplaza siguiendo una trayectoria
+                curva, como la forma de una parábola. Este fenómeno se produce cuando un objeto es lanzado con una velocidad
+                inicial desde una altura y bajo la influencia de la gravedad. Su trayectoria es determinada por dos
+                componentes de movimiento: la velocidad horizontal constante y la caída vertical debido a la gravedad.
+            </p>
+            
+            <p>
+                El estudio del movimiento parabólico es fundamental en la física y la mecánica, y tiene numerosas aplicaciones
+                prácticas, como en el diseño de proyectiles, cohetes y en la comprensión de fenómenos naturales como la
+                caída de objetos.
+            </p>
+            
+            <h3>Ecuaciones del Movimiento Parabólico</h3>
+            
+            <p>
+                Altura (\(y\)): \(y = y_0 + v_0 \cdot t - \frac{1}{2} \cdot g \cdot t^2\)
+            </p>
+            
+            <p>
+                Distancia Horizontal (\(x\)): \(x = x_0 + v_{0x} \cdot t\)
+            </p>
+            
+            <p>
+                Velocidad Horizontal (\(v_{0x}\)): \(v_{0x} = v_0 \cdot \cos(\theta)\)
+            </p>
+            
+            <p>
+                Velocidad Vertical (\(v_{0y}\)): \(v_{0y} = v_0 \cdot \sin(\theta) - g \cdot t\)
+            </p>
+        </div>
+    {% endif %}
+    
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+</body>
+</html>
